@@ -10,12 +10,16 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 //routes...
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
-app.use("/", require("./router/home"));
+// app.use("/", require("./router/home"));
 
 const PORT = process.env.PORT || 8000;
 
 mongoose.connect(process.env.URI).then(() => {
+  console.log("Connected to MongoDB 😆");
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}😃`);
   });
