@@ -8,6 +8,11 @@ const passport = require("passport");
 
 router.route("/login").get(loginController);
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/auth/login");
+});
+
 router.route("/google").get(
   passport.authenticate("google", {
     scope: ["profile", "email"],
