@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 
 //routes...
 
-app.use("/home", require("./router/home"));
+app.use("/", require("./router/home"));
 
 const PORT = process.env.PORT || 8000;
 
