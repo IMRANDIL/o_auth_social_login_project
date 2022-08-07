@@ -18,9 +18,15 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.URI).then(() => {
-  console.log("Connected to MongoDB 😆");
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}😃`);
+mongoose
+  .connect(process.env.URI)
+  .then(() => {
+    console.log("Connected to MongoDB 😆");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}😃`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+    process.exit(1);
   });
-});
