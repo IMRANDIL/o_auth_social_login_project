@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.use("/", require("./router/auth"));
+app.use("/auth", require("./router/auth"));
 
 const PORT = process.env.PORT || 8000;
 
