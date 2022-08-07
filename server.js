@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const ejs = require("ejs");
+const cookie_session = require("cookie-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportConfig = require("./passport/passport");
@@ -9,7 +10,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cookie_session({
+    maxAge: 3 * 24 * 60 * 60 * 1000,
+    keys: ["thisissupersecretkey"],
+  })
+);
 app.use(passport.initialize());
+app.use(passport.session());
 app.set("view engine", "ejs");
 
 //routes...
