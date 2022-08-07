@@ -9,6 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
+//routes...
+
+app.use("/home", require("./router/home"));
+
 const PORT = process.env.PORT || 8000;
 
 mongoose.connect(process.env.URI).then(() => {
