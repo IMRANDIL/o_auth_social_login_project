@@ -20,8 +20,12 @@ router.route("/google").get(
   googleLoginController
 );
 
-router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  res.send(req.user);
-});
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { successRedirect: "/" }),
+  (req, res) => {
+    res.send(req.user);
+  }
+);
 
 module.exports = router;
