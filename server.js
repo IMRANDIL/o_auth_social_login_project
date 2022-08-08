@@ -18,10 +18,19 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+const isLoggedIn = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/auth/login");
+  }
+};
+
 app.set("view engine", "ejs");
 
 //routes...
-app.get("/", (req, res) => {
+app.get("/", isLoggedIn, (req, res) => {
   res.render("home");
 });
 
